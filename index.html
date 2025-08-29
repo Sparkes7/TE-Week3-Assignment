@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fishing Clicker Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <div class="grass">
+        <p id="title">- Gone Fishing -</p>
+        <p id="subtitle">A Cosy Clicker Game</p>
+      </div>
+      <div class="grass2"></div>
+      <div class="water">
+        <section id="upgrades"></section>
+        <section id="game-content">
+          <div id="stats">
+            <div class="stat-block">
+              <p>Fish:</p>
+              <p id="clicks"></p>
+            </div>
+            <div class="stat-block">
+              <p>Fish Per Second:</p>
+              <p id="clicks-per-second"></p>
+            </div>
+          </div>
+          <img id="cookie-image" src="./bobber.png" alt="The cookie element" />
+        </section>
+      </div>
+      <div class="grass"></div>
+    </main>
+
+    <div id="tooltip">
+      <span id="tooltip-name"></span>
+      <span id="tooltip-cost"></span>
+      <span id="tooltip-text"></span>
+      <span id="tooltip-error" class="error-text"></span>
+    </div>
+
+    <div id="upgrades-toggle-container">
+      <button id="upgrades-toggle">
+        <p>UPGRADES</p>
+      </button>
+    </div>
+
+    <div id="dev-tools">
+      <p>DEV TOOLS:</p>
+      <button onclick="resetGame()" id="reset-game">Reset Game</button>
+      <button onclick="giveThousand()">Give 1000</button>
+    </div>
+  </body>
+</html>

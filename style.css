@@ -1,0 +1,183 @@
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Bubbler+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  background-color: palevioletred;
+  font-family: "Bubbler One", sans-serif;
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 20% 5% 65% 10%;
+}
+
+#title {
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+}
+
+.grass {
+  background-color: rgb(181, 255, 138);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.grass p {
+  font-size: 1.5rem;
+}
+
+.grass2 {
+  background-color: rgb(135, 194, 102);
+}
+.water {
+  background-color: rgb(86, 183, 240);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 100%;
+}
+
+#stats {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  color: black;
+  text-align: right;
+  width: 50%;
+}
+
+#stats p {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.stat-block {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#clicks,
+#clicks-per-second {
+  text-align: left;
+}
+
+#dev-tools {
+  position: absolute;
+  bottom: 2%;
+  width: 100%;
+  text-align: center;
+  margin-inline: auto;
+  font-weight: 900;
+  visibility: visible;
+}
+
+.upgrade {
+  width: 4rem;
+  height: 4rem;
+  margin: 0.3rem;
+  background-color: crimson;
+}
+
+#upgrades {
+  visibility: hidden;
+  max-width: 50%;
+  display: none;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-evenly;
+  height: 500px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#upgrades-toggle-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 2%;
+}
+
+#upgrades-toggle {
+  font-size: 1.5rem;
+  font-family: inherit;
+  font-weight: 900;
+  padding: 0.5rem 1.5rem;
+  background-color: greenyellow;
+}
+
+#tooltip {
+  position: absolute;
+  max-width: 30rem;
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  z-index: 999;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.error-text {
+  color: yellow;
+  font-size: 0.8rem;
+}
+
+#cookie-image {
+  object-fit: contain;
+  flex-grow: 2;
+}
+
+@media (min-width: 768px) {
+  #upgrades {
+    position: absolute;
+    overflow: hidden;
+    display: flex;
+    width: 20%;
+    height: fit-content;
+    bottom: 25%;
+    left: 1%;
+    padding: 0.5rem;
+  }
+
+  #cookie-image {
+    width: 15rem;
+  }
+  #stats p {
+    font-size: 2rem;
+  }
+
+  #upgrades-toggle-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    bottom: 15%;
+    left: 5%;
+  }
+}
