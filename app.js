@@ -16,6 +16,10 @@ document.addEventListener("mousemove", function (e) {
   tooltip.style.top = y + "px";
 });
 
+// document.addEventListener("click", function (element) {
+//   console.log(element.target);
+// });
+
 function showTooltip(e) {
   const index = e.target.getAttribute("data-upgrade");
 
