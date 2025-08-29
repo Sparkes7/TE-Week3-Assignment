@@ -45,7 +45,7 @@ To achieve the tooltip, I created a tooltip `<div>` for this information to be i
 When implementing my hover tooltip, I decided that the best method I could take was to dynamically take the data from the API data, that way if the upgrades changed or more were added, the tooltip would be able to update regardless without the need to hard-code in some values.
 I discovered a problem when I got the tooltip to work, in that it was slightly delayed when hovering. BEHOLD: DOZENS OF FETCH REQUESTS.
 
-![Fetch Requests](https://drive.google.com/file/d/1PbdtsGhxRdJBN7yPlOIH-SgE5kfW9LPK/view?usp=drive_link)
+![Fetch Requests](fetch-request-spam.png)
 
 **Solution**
 Every time I hovered an upgrade, it was fetching the data from the API. Because the speed of my tooltip updating was bottlenecked by the speed of the fetch, I decided that the best way to handle this would be to initially fetch the API data, then loop through the API array and push the values into my own local array, then use that new local array as my reference point.
