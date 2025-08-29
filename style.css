@@ -29,7 +29,8 @@ main {
 
 .grass {
   background-color: rgb(181, 255, 138);
-  background-image: url(grass-bg.jpg);
+  background-image: url(./images/grass-bg.jpg);
+  background-position: bottom;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,10 +42,14 @@ main {
 
 .grass2 {
   background-color: rgb(135, 194, 102);
+  background-image: url(./images/grass2-bg.jpg);
+  background-repeat: repeat-x;
+  background-size: 12em;
 }
 .water {
   background-color: rgb(86, 183, 240);
-  background-image: url(water-bg.jpg);
+  background-image: url(./images/water-bg.jpg);
+  background-size: 20rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -150,9 +155,13 @@ main {
   font-size: 0.8rem;
 }
 
-#cookie-image {
+#bobber-image {
   object-fit: contain;
   flex-grow: 2;
+  transition: all 0.2s;
+}
+#bobber-image:hover {
+  transform: scale(105%);
 }
 
 @media (min-width: 768px) {
@@ -167,7 +176,7 @@ main {
     padding: 0.5rem;
   }
 
-  #cookie-image {
+  #bobber-image {
     width: 15rem;
   }
   #stats p {

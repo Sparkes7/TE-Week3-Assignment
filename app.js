@@ -105,9 +105,9 @@ function updateInterface() {
   cpsText.textContent = ` ${stats.clicksPerSecond}`;
 }
 
-function initCookie() {
-  const cookie = document.getElementById("cookie-image");
-  cookie.addEventListener("click", function () {
+function initBobber() {
+  const bobber = document.getElementById("bobber-image");
+  bobber.addEventListener("click", function () {
     stats.clicks++;
   });
 }
@@ -151,7 +151,7 @@ let myUpgrades = [];
 // INITIALISE THE GAME
 loadGame();
 initUpgrades();
-initCookie();
+initBobber();
 startInterval();
 
 // FOR TESTING PURPOSES
