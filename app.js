@@ -31,8 +31,6 @@ function hideTooltip() {
   tooltip.style.display = "none";
 }
 
-// ============== REFERENCES ==============
-
 const upgradesButton = document.getElementById("upgrades-toggle");
 
 const amendedUpgradeNames = [
@@ -152,8 +150,17 @@ function startInterval() {
 function initBobber() {
   const bobber = document.getElementById("bobber-image");
   bobber.addEventListener("click", function () {
+    playBobberPop();
     stats.clicks++;
   });
+}
+
+function playBobberPop() {
+  const popAudio = document.getElementById("pop-audio");
+  const bobberPops = ["./sfx/pop1.ogg", "./sfx/pop2.ogg", "./sfx/pop3.ogg"];
+  const rand = Math.floor(Math.random() * 3);
+  popAudio.setAttribute("src", bobberPops[rand]);
+  popAudio.play();
 }
 
 function saveGame() {
