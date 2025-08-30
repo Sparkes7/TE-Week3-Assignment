@@ -7,6 +7,7 @@ const tooltipName = document.getElementById("tooltip-name");
 const tooltipCost = document.getElementById("tooltip-cost");
 const tooltipText = document.getElementById("tooltip-text");
 const tooltipError = document.getElementById("tooltip-error");
+const tooltipFlavour = document.getElementById("tooltip-flavour-text");
 
 // event listener on the whole body that tracks my mouse position. I can then use this pixel data to position the tooltip box absolutely!
 document.addEventListener("mousemove", function (e) {
@@ -16,16 +17,13 @@ document.addEventListener("mousemove", function (e) {
   tooltip.style.top = y + "px";
 });
 
-// document.addEventListener("click", function (element) {
-//   console.log(element.target);
-// });
-
 function showTooltip(e) {
   const index = e.target.getAttribute("data-upgrade");
 
-  tooltipName.textContent = myUpgrades[index].name;
-  tooltipCost.textContent = `Cost: ${myUpgrades[index].cost}`;
-  tooltipText.textContent = `Increases clicks per second by: ${myUpgrades[index].increase}`;
+  tooltipName.textContent = myUpgrades[index].name.toUpperCase();
+  tooltipCost.textContent = `Costs ${myUpgrades[index].cost} Fish`;
+  tooltipText.textContent = `Increases Fish per second by: ${myUpgrades[index].increase}`;
+  tooltipFlavour.textContent = `${amendedUpgradeNames[index].Description}`;
   tooltip.style.display = "flex";
 }
 
@@ -33,7 +31,50 @@ function hideTooltip() {
   tooltip.style.display = "none";
 }
 
+// ============== REFERENCES ==============
+
 const upgradesButton = document.getElementById("upgrades-toggle");
+
+const amendedUpgradeNames = [
+  {
+    name: "An Actual Fishing Rod...",
+    Description: "Definitely better than using my hands to catch them",
+  },
+  {
+    name: "Worm on a hook",
+    Description: "Some basic bait... it'll do!",
+  },
+  {
+    name: "Stronger Fishing Line",
+    Description: "This line hopefully wont SNAP!",
+  },
+  {
+    name: "Fishing Weights",
+    Description: "Sinks the bait to a depth where there are more fish!",
+  },
+  {
+    name: "Bite Alarm",
+    Description: "A bite alarm that notifies you when a fish is on the hook!",
+  },
+  {
+    name: "Carbon Fiber Rod",
+    Description: "Light, Durable... What more could you need?!",
+  },
+  {
+    name: "A Big Net",
+    Description: "I was a fool catching one fish at a time... BEHOLD, A NET",
+  },
+  { name: "A Massive Net", Description: "It's just a bigger net, really..." },
+  {
+    name: "Dynamite!",
+    Description: "BOOM! Not sure these fish would taste that good.",
+  },
+  {
+    name: "Drain The Water",
+    Description:
+      "Kinda defeats the purpose of fishing... but I suppose you get a lot of fish out of it.",
+  },
+];
 
 let isDisplayed = false;
 
@@ -72,10 +113,11 @@ async function initUpgrades() {
   }
 
   // Creates the actual upgrade elements and appends them to the upgrades container in the DOM.
-  for (i = 0; i < myUpgrades.length; i++) {
+  for (let i = 0; i < myUpgrades.length; i++) {
     const upgradeDiv = document.createElement("div");
     upgradeDiv.classList.add("upgrade");
     upgradeDiv.setAttribute("data-upgrade", i);
+    myUpgrades[i].name = amendedUpgradeNames[i].name;
 
     upgradeDiv.addEventListener("click", function (element) {
       const index = element.target.getAttribute("data-upgrade");
@@ -84,8 +126,7 @@ async function initUpgrades() {
         stats.clicksPerSecond += myUpgrades[index].increase;
         updateInterface();
       } else if (stats.clicks <= myUpgrades[index].cost) {
-        tooltipError.textContent =
-          "Not enough Clicks to buy this".toUpperCase();
+        tooltipError.textContent = "Not enough Fish to buy this".toUpperCase();
         tooltipError.style.display = "";
         setTimeout(function () {
           tooltipError.textContent = "";
@@ -100,9 +141,12 @@ async function initUpgrades() {
   }
 }
 
-function updateInterface() {
-  clicksText.textContent = `     ${stats.clicks.toFixed(0)}`;
-  cpsText.textContent = ` ${stats.clicksPerSecond}`;
+function startInterval() {
+  setInterval(function () {
+    stats.clicks += stats.clicksPerSecond / 10;
+    updateInterface();
+    saveGame();
+  }, 100);
 }
 
 function initBobber() {
@@ -110,14 +154,6 @@ function initBobber() {
   bobber.addEventListener("click", function () {
     stats.clicks++;
   });
-}
-
-function startInterval() {
-  setInterval(function () {
-    stats.clicks += stats.clicksPerSecond / 10;
-    updateInterface();
-    saveGame();
-  }, 100);
 }
 
 function saveGame() {
@@ -137,6 +173,11 @@ function loadGame() {
   }
 }
 
+function updateInterface() {
+  clicksText.textContent = ` ${stats.clicks.toFixed(0)}`;
+  cpsText.textContent = ` ${stats.clicksPerSecond}`;
+}
+
 // ========= GLOBAL VARIABLES =========
 const clicksText = document.getElementById("clicks");
 const cpsText = document.getElementById("clicks-per-second");
@@ -154,13 +195,24 @@ initUpgrades();
 initBobber();
 startInterval();
 
-// FOR TESTING PURPOSES
+//
+//
+// =============== FOR TESTING PURPOSES ===============
+// ========== EXECUTE THESE IN BROWSER CONSOLE ========
+
 function resetGame() {
   stats.clicks = 0;
   stats.clicksPerSecond = 0;
   localStorage.setItem("stats", JSON.stringify(stats));
 }
 
-function giveThousand() {
-  stats.clicks += 1000;
+function giveClicks(clicks) {
+  stats.clicks += clicks;
 }
+function giveCPS(clicks) {
+  stats.clicksPerSecond += clicks;
+}
+
+// document.addEventListener("click", function (element) {
+//   console.log(element.target);
+// });

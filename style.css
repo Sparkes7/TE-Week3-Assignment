@@ -152,7 +152,18 @@ main {
 
 .error-text {
   color: yellow;
-  font-size: 0.8rem;
+  font-size: 1rem;
+}
+.upgrade-name-text {
+  text-decoration: underline;
+}
+
+#tooltip-flavour-text {
+  margin-top: 0.5rem;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 0.8rem;
+  text-align: center;
 }
 
 #bobber-image {
