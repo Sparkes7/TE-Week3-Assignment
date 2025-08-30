@@ -155,9 +155,10 @@ function initBobber() {
   });
 }
 
+const popAudio = document.getElementById("pop-audio");
+const bobberPops = ["./sfx/pop1.ogg", "./sfx/pop2.ogg", "./sfx/pop3.ogg"];
+
 function playBobberPop() {
-  const popAudio = document.getElementById("pop-audio");
-  const bobberPops = ["./sfx/pop1.ogg", "./sfx/pop2.ogg", "./sfx/pop3.ogg"];
   const rand = Math.floor(Math.random() * 3);
   popAudio.setAttribute("src", bobberPops[rand]);
   popAudio.play();
